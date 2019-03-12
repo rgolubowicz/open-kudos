@@ -41,7 +41,7 @@ describe('GiveCommandHandler tests', function () {
         const slackEventInfoFromUserWithoutReasonOfGivignPoints = testHelper.createTestObject(slackEventBasicObject, eventWithCommandWithoutReasonOfGivingPoints)
         const giveCommandHandler = new GiveCommandHandler(slackEventInfoFromUserWithoutReasonOfGivignPoints)
         const validMessage = giveCommandHandler.getInformationWhyUserGetsPoints()
-        expect(validMessage).to.be.equal(`<@U061F7AUR> didn't give reason for giving points.`)
+        expect(validMessage).to.be.equal('for no reason')
     })
 
     it('giveCommandHandler validation method should return error if sender === receiver', () => {
@@ -57,7 +57,7 @@ describe('GiveCommandHandler tests', function () {
         const giveCommandHandler = new GiveCommandHandler(slackEventInfoFromUserWithNotValidPointsAmount)
         giveCommandHandler.validate()
         expect(giveCommandHandler.errorObject.isValid).to.be.equal(false)
-        expect(giveCommandHandler.errorObject.message).to.be.equal('You gave: XYZ and it is not valid amount of points :(')
+        expect(giveCommandHandler.errorObject.message).to.be.equal('You try give XYZ but this is not valid amount of points :(')
     })
 
     it('giveCommandHandler validation method should return error if there is wrong receiver username', () => {
